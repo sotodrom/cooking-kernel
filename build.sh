@@ -65,7 +65,7 @@ DEVICE="X00TD"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
-DEFCONFIG=X00TD_defconfig
+DEFCONFIG=vendor/asus/X00TD_defconfig
 
 # Specify compiler. 
 # 'clang' or 'gcc'
