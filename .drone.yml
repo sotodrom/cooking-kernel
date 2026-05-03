@@ -12,7 +12,8 @@ platform:
 
 steps:
   - name: build-kernel
-    image: atomxorg/arch-linux:kernel
+    image: alpine
+      - echo "Hello World!"
     environment:
       GIT:
         from_secret: git
