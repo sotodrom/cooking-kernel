@@ -6,6 +6,10 @@ kind: pipeline
 type: docker
 name: cooking
 
+platform:
+  os: linux
+  arch: amd64
+
 steps:
   - name: build-kernel
     image: atomxorg/arch-linux:kernel
