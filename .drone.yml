@@ -12,7 +12,7 @@ steps:
       - "git clone --depth=1 https://github.com/sotodrom/kernel_asus_sdm660-4.19 -b 16 kernel"
       - "cd kernel"
       - "curl -LSs "https://raw.githubusercontent.com/Sorayukii/KernelSU-Next/stable/kernel/setup.sh" | bash -s hookless"
-      - "curl -s https://raw.githubusercontent.com/Tiktodz/cooking-kernel/master/build.sh | bash"
+      - "curl -s https://raw.githubusercontent.com/sotodrom/cooking-kernel/master/build.sh | bash"
     environment: 
       GIT:
         from_secret: git
