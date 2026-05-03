@@ -1,24 +1,29 @@
---- 
-clone: 
+---
+clone:
   depth: 1
+
 kind: pipeline
+type: docker
 name: cooking
-steps: 
-  - 
-    commands:
-      - "export git=$GIT"
-      - "export token=$TOKEN"
-      - "export TZ=Europe/Moscow"
-      - "git clone --depth=1 https://github.com/sotodrom/kernel_asus_sdm660-4.19 -b 16 kernel"
-      - "cd kernel"
-      - "curl -LSs "https://raw.githubusercontent.com/Sorayukii/KernelSU-Next/stable/kernel/setup.sh" | bash -s hookless"
-      - "curl -s https://raw.githubusercontent.com/sotodrom/cooking-kernel/master/build.sh | bash"
-    environment: 
+
+steps:
+  - name: build-kernel
+    image: atomxorg/arch-linux:kernel
+    environment:
       GIT:
         from_secret: git
-      TOKEN: 
+      TOKEN:
         from_secret: token
-    image: atomxorg/arch-linux:kernel
-    trigger: 
-      branch: 
-        - master
+    commands:
+      - export git=$GIT
+      - export token=$TOKEN
+      - export TZ=Europe/Moscow
+      - git clone --depth=1 https://github.com/sotodrom/kernel_asus_sdm660-4.19 -b 16 kernel
+      - cd kernel
+      - curl -LSs https://raw.githubusercontent.com/Sorayukii/KernelSU-Next/stable/kernel/setup.sh | bash -s hookless
+      - curl -s https://raw.githubusercontent.com/sotodrom/cooking-kernel/master/build.sh | bash
+
+trigger:
+  branch:
+    - master
+    - main
